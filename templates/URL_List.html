@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Archive URL List</title>
+</head>
+<body>
+<form class="search" action="URL_List(Search).html" method="get">
+     Search for an existing URL Archive:<br/>
+	<label for="your_url">Your URL</label>
+	<input label="Your URL" id="your_url" name="your_url" value="">
+	<br/>
+	<input type="submit" value="Submit">
+</form>
+	<h2>URLS Actively Being Archived</h2>
+<div class="archive-list">
+<ul>
+<li><a class="archived-url" rel="item" href="Discogs_Archive.html">discogs.com</a></li>
+<li><a class="archived-url" rel="item" href="user-url-2">myurl.com</a></li> 
+<li><a class="archived-url" rel="item" href="user-url-3">theyurl.com</a></li>
+</ul>
+</div>
+
+<br/>
+<br/>
+Submit a URL to be archived:<br/><br/>  
+<form class="add_to_archive_list" action="archive_service.com/new_url.html" method="post">
+     Your Name:<br/>
+        <input type="text" name="name" value="">
+        <br/>
+        <br/>
+        URL to Archive:<br>
+  	<input class="archived-url" type="text" name="url" value="">
+  	<br/><br/>
+     Frequency of Archive:<br/><br/>
+      <select name="frequency">
+        <option value="daily">Daily</option>
+        <option value="weekly">Weekly</option>
+        <option value="bi-weekly">Bi-Weekly</option>
+        <option value="monthly">Monthly</option>
+        <option value="quarterly">Quarterly</option>
+        </select>
+        <br/>
+        <br/>
+     Date on which to begin Archiving URL:<br/>
+        <input type="date" name="archive_start" value="">
+       <br>	
+  <br>
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
