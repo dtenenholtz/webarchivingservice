@@ -164,13 +164,13 @@ class DomainArchive(Resource):
                 filter_and_sort_domainlists(**query)), 200)
 
     def post(self):
-        domainlist = new_domainlist_parser.parse_args()
-        domainlist_id = generate_id()
-        domainlist['@id'] = 'request/' + domainlist_id
-        domainlist['@type'] = 'helpdesk:HelpRequest'
-        domainlist['time'] = datetime.isoformat(datetime.now())
-        domainlist['priority'] = PRIORITIES.index('normal')
-        data['domainlists'][domainlist_id] = domainlist
+        domainarchive = new_domainarchive_parser.parse_args()
+        domainarchive_id = generate_id()
+        domainarchive['@id'] = 'request/' + domainarchive_id
+        domainarchive['@type'] = 'helpdesk:HelpRequest'
+        domainarchive['time'] = datetime.isoformat(datetime.now())
+        domainarchive['priority'] = PRIORITIES.index('normal')
+        data['domainarchives'][domainarchive_id] = domainarchive
         return make_response(
             render_domainlist_list_as_html(
                 filter_and_sort_domainlists()), 201)
@@ -243,7 +243,12 @@ api.add_resource(HelpRequestAsJSON, '/request/<string:domainlist_id>.json')
 api.add_resource(Greeting, '/greeting/<string:role>')
 api.add_resource(Greetings, '/greetings')
 '''
-api.add_resource()
+api.add_resource(DomainList, '/domains/<string:domainlist_id>')
+api.add_resource(DomainListAsJSON, '/domains/<string:domainlist_id>.json')
+api.add_resource(DomainArchive, '/domains/<string:domainarchive_id>')
+api.add_resource(HelpRequestAsJSON, '/request/<string:domainlist_id>.json')
+api.add_resource(Greeting, '/greeting/<string:role>')
+api.add_resource(Greetings, '/greetings')
 
 # Redirect from the index to the list of help requests.
 @app.route('/')
