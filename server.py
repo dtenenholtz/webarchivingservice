@@ -130,7 +130,7 @@ query_parser.add_argument(
     'sort_by', type=str, choices=('priority', 'time'), default='time')
 
 class DomainList(Resource):
-    
+
     def get(self, domainlist_id):
         error_if_domainlist_not_found(domainlist_id)
         return make_response(
@@ -150,73 +150,19 @@ class DomainList(Resource):
 
 class DomainListAsJSON(Resource):
 
-    def get(self, ):
-    
-class DomainArchive(Resource):
-
-    def get(self, ):
-
-    def post(self, ):
-
-class DomainArchiveAsJSON(Resource):
-
-    def get(self, ):
-    
-class ArchivePlan(Resource):
-
-    def get(self, ):
-
-    def put(self, ):
-
-    def delete(self, ):
-
-# Define our help request resource.
-class HelpRequest(Resource):
-
-    # If a help request with the specified ID does not exist,
-    # respond with a 404, otherwise respond with an HTML representation.
-    
-
-    # If a help request with the specified ID does not exist,
-    # respond with a 404, otherwise update the help request and respond
-    # with the updated HTML representation.
-    def patch(self, domainlist_id):
-        error_if_domainlist_not_found(domainlist_id)
-        domainlist = data['domainlists'][domainlist_id]
-        update = update_domainlist_parser.parse_args()
-        domainlist['priority'] = update['priority']
-        if len(update['comment'].strip()) > 0:
-            domainlist.setdefault('comments', []).append(update['comment'])
-        return make_response(
-            render_domainlist_as_html(domainlist), 200)
-
-
-# Define a resource for getting a JSON representation of a help request.
-class HelpRequestAsJSON(Resource):
-
-    # If a help request with the specified ID does not exist,
-    # respond with a 404, otherwise respond with a JSON representation.
     def get(self, domainlist_id):
         error_if_domainlist_not_found(domainlist_id)
         domainlist = data['domainlists'][domainlist_id]
         domainlist['@context'] = data['@context']
         return domainlist
 
-
-# Define our help request list resource.
-class HelpRequestList(Resource):
-
-    # Respond with an HTML representation of the help request list, after
-    # applying any filtering and sorting parameters.
-    @requires_auth
+class DomainArchive(Resource):
     def get(self):
         query = query_parser.parse_args()
         return make_response(
             render_domainlist_list_as_html(
                 filter_and_sort_domainlists(**query)), 200)
 
-    # Add a new help request to the list, and respond with an HTML
-    # representation of the updated list.
     def post(self):
         domainlist = new_domainlist_parser.parse_args()
         domainlist_id = generate_id()
@@ -229,13 +175,34 @@ class HelpRequestList(Resource):
             render_domainlist_list_as_html(
                 filter_and_sort_domainlists()), 201)
 
+class DomainArchiveAsJSON(Resource):
 
-# Define a resource for getting a JSON representation of the help request list.
-class HelpRequestListAsJSON(Resource):
     def get(self):
         return data
 
+class ArchivePlan(Resource):
 
+    def get(self, domainlist_id):
+        error_if_domainlist_not_found(domainlist_id)
+        return make_response(
+            render_domainlist_as_html(
+                data['domainlist'][domainlist_id]), 200)
+
+    def put(self, ):
+
+    def delete(self, ):
+
+
+class SnapShot(Resource):
+
+    def get(self):
+        query = query_parser.parse_args()
+        return make_response(
+            render_domainlist_list_as_html(
+                filter_and_sort_domainlists(**query)), 200)
+
+
+'''
 class Greeting(Resource):
     def get(self, role):
         parser = reqparse.RequestParser()
@@ -262,7 +229,7 @@ class Greetings(Resource):
         return make_response(
             render_template('greetings.html', roles=roles), 201)
 
-
+'''
 
 
 # Assign URL paths to our resources.

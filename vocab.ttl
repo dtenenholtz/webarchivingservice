@@ -1,7 +1,12 @@
 @base <https://rawgit.com/sils-webinfo/helpdesk/master/vocab.ttl#> .
 @schema <http://schema.org/> .
 
-<HelpRequest> 
+<DomainList>
   a rdf:Class ;
-  rdfs:label "Help Request"@en ;
+  rdfs:label "Domain List"@en ;
+  rdfs:subClassOf schema:CreativeWork .
+
+<DomainArchive>
+  a rdf:Class ;
+  rdfs:label "Domain Archive"@en ;
   rdfs:subClassOf schema:CreativeWork .
