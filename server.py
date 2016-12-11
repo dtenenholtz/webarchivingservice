@@ -192,7 +192,7 @@ class DomainArchive(Resource):
         domainarchive['@type'] = 'helpdesk:HelpRequest'
         domainarchive['time'] = datetime.isoformat(datetime.now())
         domainarchive['priority'] = PRIORITIES.index('normal')
-        data['domainarchives'][domailist_id] = domainarchive
+        data['domainarchives'][domainlist_id] = domainarchive
         return make_response(
             render_domainlist_list_as_html(
                 filter_and_sort_domainlists()), 201)
