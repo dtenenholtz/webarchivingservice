@@ -8,11 +8,11 @@ import random
 from functools import wraps
 from datetime import datetime
 
-'''
+
 # Define our priority levels.
 # These are the values that the "priority" property can take on a help request.
 PRIORITIES = ('closed', 'low', 'normal', 'high')
-'''
+
 
 # Load data from disk.
 # This simply loads the data from our "database," which is just a JSON file.
@@ -43,7 +43,7 @@ def requires_auth(f):
     return decorated
 '''
 
-# Generate a unique ID for each new Archive.
+# Generate a unique ID for each new Archive or Archive Item.
 # By default this will consist of six lowercase numbers and letters.
 def generate_id(size=6, chars=string.ascii_lowercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
@@ -52,9 +52,13 @@ def generate_id(size=6, chars=string.ascii_lowercase + string.digits):
 # Respond with 404 Not Found if no help request with the specified ID exists.
 def error_if_domainlist_not_found(domainlist_id):
     if domainlist_id not in data['domainlists']:
-        message = "No help request with ID: {}".format(domainlist_id)
+        message = "No URL Archive with ID: {}".format(domainlist_id)
         abort(404, message=message)
 
+def error_if_domainarchive_not_found(domainarchive_id):
+    if domainarchive_id not in data['domainarchive']:
+        message = "No Archive Item with ID: {}".format(domainarchive_id)
+        abort(404, message=message)
 
 # Filter and sort a list of domainlists.
 def filter_and_sort_domainlists(query='', sort_by='time'):
@@ -76,7 +80,25 @@ def filter_and_sort_domainlists(query='', sort_by='time'):
 
     return sorted(filtered_domainlists, key=get_sort_value, reverse=True)
 
+# Filter and sort a list of Archive Items.
+def filter_and_sort_domainarchive(query='', sort_by='time'):
 
+    # Returns True if the query string appears in the help request's
+    # title or description.
+    def matches_query(item):
+        (domainarchive_id, domainarchive) = item
+        text = domainarchive['title'] + domainarchive['description']
+        return query.lower() in text
+
+    # Returns the help request's value for the sort property (which by
+    # default is the "time" property).
+    def get_sort_value(item):
+        (domainarchive_id, domainarchive) = item
+        return domainarchive[sort_by]
+
+    filtered_domainlists = filter(matches_query, data['domainlists'].items())
+
+    return sorted(filtered_domainarchives, key=get_sort_value, reverse=True)
 # Given the data for a help request, generate an HTML representation
 # of that help request.
 def render_domainlist_as_html(domainlist):
@@ -164,13 +186,13 @@ class DomainArchive(Resource):
                 filter_and_sort_domainlists(**query)), 200)
 
     def post(self):
-        domainarchive = new_domainarchive_parser.parse_args()
+        domainarchive = new_domainlist_parser.parse_args()
         domainarchive_id = generate_id()
-        domainarchive['@id'] = 'request/' + domainarchive_id
+        domainarchive['@id'] = 'request/' + domainlist_id
         domainarchive['@type'] = 'helpdesk:HelpRequest'
         domainarchive['time'] = datetime.isoformat(datetime.now())
         domainarchive['priority'] = PRIORITIES.index('normal')
-        data['domainarchives'][domainarchive_id] = domainarchive
+        data['domainarchives'][domailist_id] = domainarchive
         return make_response(
             render_domainlist_list_as_html(
                 filter_and_sort_domainlists()), 201)
@@ -189,9 +211,17 @@ class ArchivePlan(Resource):
                 data['domainlist'][domainlist_id]), 200)
 
     def put(self, ):
+        domainarchive['time'] = datetime.isoformat(datetime.now())
+        domainarchive['priority'] = PRIORITIES.index('normal')
+        return make_response(
+            render_domainarchive_list_as_html(
+                filter_and_sort_domainlists()), 201)
 
     def delete(self, ):
-
+        data['domainarchives'][domailist_id] = domainarchive
+        return make_response(
+            render_domainlist_list_as_html(
+                filter_and_sort_domainlists()), 201)
 
 class SnapShot(Resource):
 
@@ -246,14 +276,14 @@ api.add_resource(Greetings, '/greetings')
 api.add_resource(DomainList, '/domains/<string:domainlist_id>')
 api.add_resource(DomainListAsJSON, '/domains/<string:domainlist_id>.json')
 api.add_resource(DomainArchive, '/domains/<string:domainarchive_id>')
-api.add_resource(HelpRequestAsJSON, '/request/<string:domainlist_id>.json')
-api.add_resource(Greeting, '/greeting/<string:role>')
-api.add_resource(Greetings, '/greetings')
+api.add_resource(DomainArchiveAsJSON, '/request/<string:domainarchive_id>.json')
+'''api.add_resource(Greeting, '/greeting/<string:role>')
+api.add_resource(Greetings, '/greetings')'''
 
 # Redirect from the index to the list of help requests.
 @app.route('/')
 def index():
-    return redirect(api.url_for(HelpRequestList), code=303)
+    return redirect(api.url_for(DomainList), code=303)
 
 
 # This is needed to load JSON from Javascript running in the browser.
