@@ -51,7 +51,7 @@ def abort_if_archiveplan_not_found(archiveplan_id):
         abort(404, message=message)
 
 # Filter and sort a list of webdomains.
-def filter_and_sort_webdomains(query='', sort_by='time'):
+def filter_and_sort_webdomains(query='', sort_by='title'):
 
     # Returns True if the query string appears
     # title or description.
@@ -71,7 +71,7 @@ def filter_and_sort_webdomains(query='', sort_by='time'):
     return sorted(filtered_webdomains, key=get_sort_value, reverse=True)
 
 # Filter and sort a list of Archive Items.
-def filter_and_sort_archives(query='', sort_by='time'):
+def filter_and_sort_archives(query='', sort_by='title'):
 
     # Returns True if the query string appears in the web archive's
     # title or description.
@@ -114,14 +114,14 @@ def render_snapshot_as_html(pageData, id):
             archive=pageData,
             snapshot_id=id)
 
-
+'''
 # Given the data for a list of web archives, generate an HTML representation
 # of that list.
 def render_webdomains_list_as_html(webdomains):
     return render_template(
-        'webdomains+microdata+rdfa.html',
+        'domainList.html',
         webdomains=webdomains)
-
+'''
 
 # Raises an error if the string x is empty (has zero length).
 def nonempty_string(x):
@@ -134,7 +134,7 @@ def nonempty_string(x):
 # Specify the data necessary to create a new web archive.
 # "owner", "title", and "description" are all required values.
 new_webdomains_parser = reqparse.RequestParser()
-for arg in ['owner', 'title', 'description']:
+for arg in ['owner', 'url', 'title', 'frequency', 'description']:
     new_webdomains_parser.add_argument(
         arg, type=nonempty_string, required=True,
         help="'{}' is a required value".format(arg))
@@ -174,10 +174,10 @@ class DomainList(Resource):
         webdomains['@id'] = 'domains/' + webdomains_id
         webdomains['@type'] = 'webarchive:DomainList'
         webdomains['time'] = datetime.isoformat(datetime.now())
-        data['DomainList'][webdomains_id] = webdomains
+        data['webdomains'][webdomains_id] = webdomains
         return make_response(
-            render_webdomains_list_as_html(
-                filter_and_sort_webdomains()), 201)
+            render_as_html(
+                data, 'domainlist'), 200)
 
 class DomainArchive(Resource):
     def get(self, archive_id):
@@ -186,7 +186,7 @@ class DomainArchive(Resource):
                 data['webdomains'][archive_id], 'archive'), 200)
 
     def post(self):
-        domainarchive = new_webdomains_parser.parse_args()
+        domainarchive = archives_parser.parse_args()
         domainarchive_id = generate_id()
         domainarchive['@id'] = 'domain/' + domainarchive_id
         domainarchive['@type'] = 'webarchive:DomainArchive'
