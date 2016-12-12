@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>{{ archive.title }}</title>
+</head>
+<body>
+
+<ul>
+<li>Frequency: {{ plan.frequency }}</li>	   
+<li>Depth: {{ plan.depth }}</li>	
+</ul>
+
+<form action="{{ url_for('archivePlan', archivePlan_id=plan.id) }}" method="post">
+<h2>Change Frequency</h2>
+<select name="frequency">
+	<option value="daily">Daily</option>
+	<option value="weekly">Weekly</option>
+	<option value="bi-weekly">Bi-Weekly</option>
+	<option value="monthly">Monthly</option>
+	<option value="quarterly">Quarterly</option>
+	<input type="submit" value="Submit">
+</select>
+<h2>Change Depth</h2>
+<select name="depth">
+	<option value=1>1</option>
+	<option value=2>2</option>
+	<option value=3>3</option>
+	<option value=4>4</option>
+	<option value=5>5</option>
+	<input type="submit" value="Submit">
+</select>
+</form>
+
+</body>
+</html>
+
+
+
+
