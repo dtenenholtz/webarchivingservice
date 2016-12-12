@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{{ domainlist }}</title>
+</head>
+<body>
+
+	<h2>Archives</h2>
+<div class="archive-list">
+{% for domainarchive_id, domainarchive in domainarchives %}
+	<li><a class="archived_url" rel="item" href="{{ url_for('domainarchive', domainarchive_id=domainarchive_id) }}"></a></li>
+	{% endfor %}
+
+</div>
+
+<br/>
+<br/>
+Submit a URL to be archived:<br/><br/>  
+<form class="add_to_archive_list" action="{{ url_for('domainlist') }}" method="post">
+     Your Name:<br/>
+        <input type="text" name="name" value="">
+        <br/>
+        <br/>
+        URL to Archive:<br>
+  	<input class="archived-url" type="text" name="url" value="">
+  	<br/><br/>
+     Frequency of Archive:<br/><br/>
+      <select name="frequency">
+        <option value="daily">Daily</option>
+        <option value="weekly">Weekly</option>
+        <option value="bi-weekly">Bi-Weekly</option>
+        <option value="monthly">Monthly</option>
+        <option value="quarterly">Quarterly</option>
+        </select>
+        <br/>
+        <br/>
+     Date on which to begin Archiving URL:<br/>
+        <input type="date" name="archive_start" value="">
+       <br>	
+  <br>
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
