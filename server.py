@@ -73,14 +73,14 @@ def filter_and_sort_webdomains(query='', sort_by='time'):
 # Filter and sort a list of Archive Items.
 def filter_and_sort_archives(query='', sort_by='time'):
 
-    # Returns True if the query string appears in the help request's
+    # Returns True if the query string appears in the web archive's
     # title or description.
     def matches_query(item):
         (archives_id, domainarchive) = item
         text = domainarchive['title'] + domainarchive['description']
         return query.lower() in text
 
-    # Returns the help request's value for the sort property (which by
+    # Returns the web archive's value for the sort property (which by
     # default is the "time" property).
     def get_sort_value(item):
         (domainarchive_id, domainarchive) = item
@@ -92,7 +92,7 @@ def filter_and_sort_archives(query='', sort_by='time'):
 
 
 # Given the data for an archive, generate an HTML representation
-# of that help request.
+# of that archive.
 def render_as_html(pageData, page):
     if page == 'domainlist':
         return render_template(
@@ -115,7 +115,7 @@ def render_snapshot_as_html(pageData, id):
             snapshot_id=id)
 
 
-# Given the data for a list of help requests, generate an HTML representation
+# Given the data for a list of web archives, generate an HTML representation
 # of that list.
 def render_webdomains_list_as_html(webdomains):
     return render_template(
@@ -131,8 +131,8 @@ def nonempty_string(x):
     return s
 
 
-# Specify the data necessary to create a new help request.
-# "from", "title", and "description" are all required values.
+# Specify the data necessary to create a new web archive.
+# "owner", "title", and "description" are all required values.
 new_webdomains_parser = reqparse.RequestParser()
 for arg in ['owner', 'title', 'description']:
     new_webdomains_parser.add_argument(
@@ -159,9 +159,6 @@ query_parser.add_argument(
     # 'sort_by', type=str, choices=('depth', 'time'), default='time')
 )
 '''
-
-
-
 
 class DomainList(Resource):
 
