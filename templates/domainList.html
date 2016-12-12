@@ -8,10 +8,11 @@
 
 	<h2>Archives</h2>
 <div class="archive-list">
+    <ul>
 {% for key, archive in webdomains.webdomains.items() %}
 	<li><a class="archived_url" rel="item" href="{{ url_for('domainarchive', archive_id=archive['@id']) }}">{{ archive.title }}</a></li>
 	{% endfor %}
-
+</ul>
 </div>
 
 <br/>
@@ -19,12 +20,17 @@
 Submit a URL to be archived:<br/><br/>  
 <form class="add_to_archive_list" action="{{ url_for('domainlist') }}" method="post">
      Your Name:<br/>
-        <input type="text" name="name" value="">
+        <input type="text" name="owner" value="">
         <br/>
+    Title of Site:<br/>
+    <input type="text" name="title" value="">
         <br/>
         URL to Archive:<br>
   	<input class="archived-url" type="text" name="url" value="">
-  	<br/><br/>
+  	<br/>
+    Description of Site:<br/>
+     <textarea style='width:300px;height:200px;' name="description" placeholder="Enter a description of your site..."></textarea>
+    <br/>
      Frequency of Archive:<br/><br/>
       <select name="frequency">
         <option value="daily">Daily</option>
@@ -33,13 +39,10 @@ Submit a URL to be archived:<br/><br/>
         <option value="monthly">Monthly</option>
         <option value="quarterly">Quarterly</option>
         </select>
-        <br/>
-        <br/>
-     Date on which to begin Archiving URL:<br/>
-        <input type="date" name="archive_start" value="">
        <br>	
   <br>
   <input type="submit" value="Submit">
+
 </form>
 
 </body>
