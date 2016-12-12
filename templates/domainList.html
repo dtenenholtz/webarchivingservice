@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>{{ domainlist }}</title>
+<title>Domain List</title>
 </head>
 <body>
 
 	<h2>Archives</h2>
 <div class="archive-list">
-{% for domainarchive_id, domainarchive in domainarchives %}
-	<li><a class="archived_url" rel="item" href="{{ url_for('domainarchive', domainarchive_id=domainarchive_id) }}"></a></li>
+{% for key, archive in webdomains.webdomains.items() %}
+	<li><a class="archived_url" rel="item" href="{{ url_for('domainarchive', archive_id=archive['@id']) }}">{{ archive.title }}</a></li>
 	{% endfor %}
 
 </div>

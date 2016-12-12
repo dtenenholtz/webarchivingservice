@@ -8,15 +8,19 @@ import random
 # from functools import wraps
 from datetime import datetime
 
-'''
+
 # Define our capture frequency.
 # These are the values that the "cycle" property can take on an archive plan.
 CYCLE = ('daily', 'weekly', 'bi-weekly', 'monthly', 'quarterly')
 
 #Define depth of capture (number of jumps within the site's domain from the origin page)
 # The
-DEPTH = int('0:4')
-'''
+#DEPTH = range(start='':4)
+
+# define parsers for the 'cycle' and 'depth' inputs that a user supplies
+archives_parser = reqparse.RequestParser()
+archives_parser.add_argument('webdomains', type=str, default='')
+
 
 # Load data from disk.
 # This simply loads the data from our "database," which is just a JSON file.
@@ -89,11 +93,26 @@ def filter_and_sort_archives(query='', sort_by='time'):
 
 # Given the data for an archive, generate an HTML representation
 # of that help request.
-def render_webdomains_as_html(webdomains):
+def render_as_html(pageData, page):
+    if page == 'domainlist':
+        return render_template(
+            'domainList.html',
+            webdomains=pageData)
+    elif page == 'archive':
+        return render_template(
+            'archive.html',
+            archive=pageData)
+    elif page == 'plan':
+        return render_template(
+            'archivePlan.html',
+            archive=pageData)
+
+def render_snapshot_as_html(pageData, id):
+    print(pageData['snapshots'][id])
     return render_template(
-        'webdomains+microdata+rdfa.html',
-        webdomains=webdomains,
-        priorities=reversed(list(enumerate(CYCLE))))
+            'snapshot.html',
+            archive=pageData,
+            snapshot_id=id)
 
 
 # Given the data for a list of help requests, generate an HTML representation
@@ -101,8 +120,7 @@ def render_webdomains_as_html(webdomains):
 def render_webdomains_list_as_html(webdomains):
     return render_template(
         'webdomains+microdata+rdfa.html',
-        webdomains=webdomains,
-        # priorities=PRIORITIES)
+        webdomains=webdomains)
 
 
 # Raises an error if the string x is empty (has zero length).
@@ -126,7 +144,7 @@ for arg in ['owner', 'title', 'description']:
 # Only the cycle and depth can be updated.
 update_archivesplan_parser = reqparse.RequestParser()
 update_archivesplan_parser.add_argument(
-    'cycle', type=int, default=CYCLE.index('weekly'))
+    'cycle', type=str, default=CYCLE.index('weekly'))
 update_archivesplan_parser.add_argument(
     'depth', type=int, default=1)
 
@@ -147,11 +165,11 @@ query_parser.add_argument(
 
 class DomainList(Resource):
 
-    def get(self, webdomains_id):
-        error_if_webdomains_not_found(webdomains_id)
+    def get(self):
+        #error_if_webdomains_not_found(webdomains_id)
         return make_response(
-            render_webdomains_as_html(
-                data['webdomains'][webdomains_id]), 200)
+            render_as_html(
+                data, 'domainlist'), 200)
 
     def post(self):
         webdomains = new_webdomains_parser.parse_args()
@@ -164,20 +182,11 @@ class DomainList(Resource):
             render_webdomains_list_as_html(
                 filter_and_sort_webdomains()), 201)
 
-class DomainListAsJSON(Resource):
-
-    def get(self, webdomains_id):
-        error_if_webdomains_not_found(webdomains_id)
-        webdomains = data['webdomains'][webdomains_id]
-        webdomains['@context'] = data['@context']
-        return webdomains
-
 class DomainArchive(Resource):
-    def get(self):
-        query = query_parser.parse_args()
+    def get(self, archive_id):
         return make_response(
-            render_webdomains_list_as_html(
-                filter_and_sort_webdomains(**query)), 200)
+            render_as_html(
+                data['webdomains'][archive_id], 'archive'), 200)
 
     def post(self):
         domainarchive = new_webdomains_parser.parse_args()
@@ -186,7 +195,7 @@ class DomainArchive(Resource):
         domainarchive['@type'] = 'webarchive:DomainArchive'
         domainarchive['time'] = datetime.isoformat(datetime.now())
         # domainarchive['plan'] = ""
-        data['domainarchives'][domailist_id] = domainarchive
+        data['domainarchives'][domainlist_id] = domainarchive
         return make_response(
             render_webdomains_list_as_html(
                 filter_and_sort_webdomains()), 201)
@@ -196,21 +205,19 @@ class DomainArchiveAsJSON(Resource):
         return data
 
 # define parsers for the 'cycle' and 'depth' inputs that a user supplies
-depth_parser.reqparse.RequestParser()
-depth_parser.add_argument['depth']
+depth_parser = reqparse.RequestParser()
+depth_parser.add_argument('depth', type=str, default='')
 
-cycle_parser.reqparse.RequestParser()
-cycle_parser.add_argument['cycle']
+cycle_parser = reqparse.RequestParser()
+#cycle_parser.add_argument['CYCLE']
 
 
 class ArchivePlan(Resource):
-    def get(self, archiveplan_id):
-        error_if_archiveplan_not_found(archiveplan_id)
+    def get(self, archive_id):
+        #abort_if_archiveplan_not_found(archiveplan_id)
         return make_response(
-            render_archiveplan_as_html(
-                data['archiveplan'][archiveplan_id], 200)
-            )
-        )
+            render_as_html(
+                data['webdomains'][archive_id], 'plan'), 200)
 
     def put():
         depth_args = depth_parser.parse_args()
@@ -229,24 +236,20 @@ class ArchivePlan(Resource):
 
 class SnapShot(Resource):
 
-    def get(self):
-        query = query_parser.parse_args()
+    def get(self, archive_id, snapshot_id):
+        #query = query_parser.parse_args()
         return make_response(
-            render_webdomains_list_as_html(
-                filter_and_sort_webdomains(**query)), 200)
-
+            render_snapshot_as_html(data['webdomains'][archive_id], snapshot_id), 200)
 
 # Assign URL paths to our resources.
 app = Flask(__name__)
 api = Api(app)
 
-api.add_resource(DomainList, '/domains/<string:webdomains_id>')
-api.add_resource(DomainListAsJSON, '/domains/<string:webdomains_id>.json')
-api.add_resource(DomainArchive, '/domains/<string:domainarchive_id>')
+api.add_resource(DomainList, '/domains')
+api.add_resource(DomainArchive, '/domains/<string:archive_id>')
 api.add_resource(DomainArchiveAsJSON, '/domains/<string:domainarchive_id>.json')
-api.add_resource(ArchivePlan, '/plan/<string:plan_id>')
-api.add_resource(SnapShotAsJson, '/capture/<string:snapshot_id>.json’)
-
+api.add_resource(ArchivePlan, '/plan/<string:archive_id>')
+api.add_resource(SnapShot, '/capture/<string:archive_id>/<string:snapshot_id>')
 
 # Redirect from the index to the list of domains.
 @app.route('/')

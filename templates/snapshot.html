@@ -2,21 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>{{ snapshot.title }}</title>
+<title>{{ archive.title }} </title>
 </head>
 <body>
-<a rel="archives" href="{{ url_for('DomainArchive', domainarchive_id=domainarchive_id) }}">{{ snapshot.parent }}</a>
+<a rel="archives" href="{{ url_for('domainarchive', archive_id=archive['@id']) }}">Archive</a>
 
-<h1>Capture No. {{ snapshot.sequence }}</h1>
+<h1>Capture No. {{ archive['snapshots'][snapshot_id]['sequence'] }}</h1>
 <ul>
-<li>{{ snapshot.size }}</li>
-<li>{{ snapshot.date }}</li>
-<li> {{ snapshot.runtime }}</li>
+<li>Size: {{ archive['snapshots'][snapshot_id]['size'] }}</li>
+<li>Date: {{ archive['snapshots'][snapshot_id]['date'] }}</li>
+<li>Runtime: {{ archive['snapshots'][snapshot_id]['runtime'] }}</li>
 </ul>
 <h3>File:</h3>
-<a rel="file" href="{{ snapshot.fileurl }}">{{snapshot.fileName}}</a>
-
-</form>
+<a rel="file" href="{{ archive['snapshots'][snapshot_id]['filename'] }}">{{ archive['snapshots'][snapshot_id]['filename'] }}</a>
 
 </body>
-<html>
+</html>
