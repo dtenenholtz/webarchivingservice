@@ -9,17 +9,17 @@
 
 <DomainArchive>
 a rdf:Class ;
-rdfs:label “Domain Archive”@en ;
+rdfs:label "Domain Archive"@en ;
 rdfs:subClassOf schema:Collection .
 
 
 <ArchivePlan>
 a rdf:Class ;
-rdfs:label “Archive Plan”@en ;
+rdfs:label "Archive Plan"@en ;
 rdfs:subClassOf schema:Object .
 
 
 <SnapShot>
 a rdf:Class ;
-rdfs:label “Snapshot”@en ;
+rdfs:label "Snapshot"@en ;
 rdfs:subClassOf schema:Object .
