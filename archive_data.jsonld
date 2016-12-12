@@ -1,0 +1,153 @@
+{
+
+    "@context": {
+
+        "webarchive": "https://rawgit.com/mcdowney/webarchivingservice/master/webarch_vocab.ttl#",
+
+        "webdomains": {
+
+            "@container": "@index",
+
+            "@id": "http://www.w3.org/2000/01/rdf-schema#member"
+
+        },
+
+        "url": "http://schema.org/url",
+
+        "title": "http://schema.org/name",
+
+        "createdate": "http://schema.org/dateCreated",
+
+        "owner": "http://schema.org/creator",
+
+        "description": "http://schema.org/description"
+
+    },
+
+    "@id": "domains",
+
+    "webdomains": { 
+
+        "fhs6jo" : {
+
+            "@type": "webarchive:DomainList",
+
+            "@id": "domain/fhs6jo",
+
+            "url": "dc.lib.unc.edu",
+
+            "title": "UNC Digital collections",
+
+        "createdate": "datetime",
+
+        "owner": "myemail@example.com",
+
+            "description": "This is the homepage for UNC's digital collections.",
+
+            "archives": [
+
+                { 
+
+                    "zrsy2l": {
+
+                        "@type": "webarchive:DomainArchive",
+
+                        "@id": "archive/zrsy2l",
+
+                        "archiveplan": [
+
+                            { 
+
+                                "ob9wm2": {
+
+                                    "@type": "webarchive:ArchivePlan",
+
+                                    "@id": "archiveplan/ob9wm2",
+
+                                    "depth": "1",
+
+                                    "cycle": "weekly"
+
+                                    }
+
+                                }
+
+                        ],
+
+                        "snapshots": [
+
+                            { 
+
+                                "f3nsq6": {
+
+                                    "@type": "webarchive:SnapShot",
+
+                                    "@id": "snapshot/f3nsq6"
+
+                                }
+
+                            },      
+
+                            {
+
+                                "ihylej": {
+
+                                    "@type": "webarchive:SnapShot",
+
+                                    "@id": "snapshot/f3nsq6"
+
+                                }
+
+                            }
+
+                        ]
+
+                    }
+
+                }
+
+              ]
+
+            },      
+
+            "dig73h" : { 
+
+            "@type": "webarchive:DomainList",
+
+                "@id": "domain/dig73h",
+
+                "url": "sils.unc.edu",
+
+                "title": "UNC-SILS Homepage",
+
+                "createdate": "datetime",
+
+                "owner":  "myemail@example.com",
+
+                "description": "This is the homepage for the School of Information and Library Science at UNC."
+
+          },
+
+            "0f4uqv": {
+
+                "@type": "webarchive:DomainList",
+
+                "@id": "domain/0f4uqv",
+
+                "url": "docsouth.unc.edu",
+
+                "title": "Documenting the American South homepage",
+
+                "createdate": "datetime",
+
+      
+
+      "owner":  "myemail@example.com",
+
+                "description": "This is the homepage for the digital resources called Documenting the American South, hosted at UNC."
+
+        }
+
+        }       
+
+    }
