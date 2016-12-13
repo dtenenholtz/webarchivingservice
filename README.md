@@ -65,7 +65,7 @@ Setup and running the service (assuming a bash terminal and GNU/Linux OS)
     $ virtualenv venv
     ```
 
-2. `cd` to the directory where you extracted the webarchivingservice project to, and activate your `virtualenv` with the command 
+2. `cd` to the directory where you extracted the webarchivingservice project to, and activate your virtualenv with the command 
     ```
     $ . venv/bin/activate
     ```
