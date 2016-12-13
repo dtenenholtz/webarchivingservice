@@ -8,7 +8,7 @@ This is a basic information service that allows users to archive web sites, capt
 
 Data Model
 -------------
-The service is designed with four resource classes (`<DomainList>`, `<DomainArchive>`, `<ArchivePlan>`, and `<SnapShot>`).  It uses a single vocabulary to describe a [Collection](http://pcdm.org/models#Collection/) and an [Object](http://pcdm.org/models#Object/) as per the [Portland Common Data Model](http://pcdm.org/models#).  See the full data model as a  [Graph Diagram](https://www.lucidchart.com/documents/view/41c50efb-2ce9-4d33-9509-52cdf08eb25c) to view the way these four resources are linked togther through the `rdfs:member` property.
+The service is designed with four resource classes (`<DomainList>`, `<DomainArchive>`, `<ArchivePlan>`, and `<SnapShot>`), as defined in `webarch_vocab.ttl`.  As single vocabulary, the [Portland Common Data Model](http://pcdm.org/models#), describes a [Collection](http://pcdm.org/models#Collection/) and an [Object](http://pcdm.org/models#Object/).  The Collection class describes the `<DomainList>` and the `<DomainArchive>`, while the Object class describes the `<ArchivePlan>` and the `<SnapShot>`. See the full data model as a  [Graph Diagram](https://www.lucidchart.com/documents/view/41c50efb-2ce9-4d33-9509-52cdf08eb25c) to view the way these four resources are linked togther through the `rdfs:member` property.
 
 Properties
 -----------
@@ -42,10 +42,10 @@ For a `<SnapShot>`:
 
 Vocabularies
 ------------
-We use assorted schema.org, W3C, and dcterms vocabularies to express conceptually what the properties of each resource mean.
+We use assorted schema.org, W3C, and [dcterms](http://purl.org/dc/terms/) vocabularies to express conceptually what the properties of each resource mean.
 
 -   any URL is expressed as `@type: http://schema.org/url`
--   any literal with a datetime datatype is expressed as `@type: http://www.w3.org/2001/XMLSchema#dateTime`
+-   any literal with a datetime datatype is expressed as `@type: https://www.w3.org/TR/xmlschema11-2/#dateTime`
 -   any createdate for a new resource is expressed as `@type: http://schema.org/dateCreated`
 -   a user that submits a domain to be archived is expressed as `@type: http://schema.org/creator`
 -   the title given by a user to a domain is expressed as `@type: http://schema.org/name`
