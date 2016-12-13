@@ -19,7 +19,11 @@ CYCLE = ('daily', 'weekly', 'bi-weekly', 'monthly', 'quarterly')
 
 # define parsers for the 'cycle' and 'depth' inputs that a user supplies
 archives_parser = reqparse.RequestParser()
-archives_parser.add_argument('webdomains', type=str, default='')
+archives_parser.add_argument("frequency", type=str, default='')
+archives_parser.add_argument("description", type=str, default='')
+archives_parser.add_argument("owner", type=str, default='')
+archives_parser.add_argument("url", type=str, default='')
+archives_parser.add_argument("title", type=str, default='')
 
 
 # Load data from disk.
@@ -171,9 +175,9 @@ class DomainList(Resource):
     def post(self):
         webdomains = new_webdomains_parser.parse_args()
         webdomains_id = generate_id()
-        webdomains['@id'] = 'domains/' + webdomains_id
+        webdomains['@id'] = webdomains_id
         webdomains['@type'] = 'webarchive:DomainList'
-        webdomains['time'] = datetime.isoformat(datetime.now())
+        webdomains['createdate'] = datetime.isoformat(datetime.now())
         data['webdomains'][webdomains_id] = webdomains
         return make_response(
             render_as_html(
@@ -188,14 +192,12 @@ class DomainArchive(Resource):
     def post(self):
         domainarchive = archives_parser.parse_args()
         domainarchive_id = generate_id()
-        domainarchive['@id'] = 'domain/' + domainarchive_id
+        domainarchive['@id'] = domainarchive_id
         domainarchive['@type'] = 'webarchive:DomainArchive'
-        domainarchive['time'] = datetime.isoformat(datetime.now())
+        domainarchive['createdate'] = datetime.isoformat(datetime.now())
         # domainarchive['plan'] = ""
-        data['domainarchives'][domainlist_id] = domainarchive
-        return make_response(
-            render_webdomains_list_as_html(
-                filter_and_sort_webdomains()), 201)
+        print(domainarchive)
+        data['webdomains'][domainarchive_id] = domainarchive
 
 class DomainArchiveAsJSON(Resource):
     def get(self):
@@ -216,7 +218,7 @@ class ArchivePlan(Resource):
             render_as_html(
                 data['webdomains'][archive_id], 'plan'), 200)
 
-    def put():
+    def put(self, archive_id):
         depth_args = depth_parser.parse_args()
         cycle_args = cycle_parser.parse_args()
 
@@ -225,6 +227,8 @@ class ArchivePlan(Resource):
 
         depth_to_update = data['archiveplan'][archiveplan_id].depth
         cycle_to_update = data['archiveplan'][archiveplan_id].cycle
+
+        return make_response(render_as_html(data['webdomains'][archive_id], 'plan'), 200)
 
     def delete(self, archiveplan_id):
         abort_if_archiveplan_not_found(archiveplan_id)
