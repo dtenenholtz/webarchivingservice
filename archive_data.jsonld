@@ -38,7 +38,7 @@
 
             "title": "UNC Digital collections",
 
-            "createdate": "datetime",
+            "createdate": "2-7-16",
 
             "owner": "myemail@example.com",
 
@@ -103,7 +103,7 @@
 
                 "title": "UNC-SILS Homepage",
 
-                "createdate": "2-7-16",
+                "createdate": "3-15-16",
 
                 "owner":  "myemail@example.com",
 
@@ -133,7 +133,7 @@
 
                                     "runtime": "00:00:10:47",
 
-                                    "createdate": "2-7-16",
+                                    "createdate": "3-15-16",
 
                                     "filename": "capture.warc"
 
@@ -149,7 +149,7 @@
 
                                     "runtime": "00:00:10:47",
 
-                                    "createdate": "2-14-16",
+                                    "createdate": "3-22-16",
 
                                     "filename": "capture.warc"
 
