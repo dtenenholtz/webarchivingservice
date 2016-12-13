@@ -2,9 +2,9 @@ About
 ------
 This is a basic information service that allows users to archive web sites, capturing sites on a time-based frequency. It implements [Flask](http://flask.pocoo.org/), [Flask-RESTful](http://flask-restful.readthedocs.org/en/latest/), and [JSON-LD](http://json-ld.org/). A user can take the following actions:
 
--Add a `<DomainArchive>` resource to the `<DomainList>`
--Create an `<ArchivePlan>` for a given `<DomainArchive>`, and also update or delete it if needed.
--View records of any created `<SnapShot>` for a given `<DomainArchive>`
+-   Add a `<DomainArchive>` resource to the `<DomainList>`
+-   Create an `<ArchivePlan>` for a given `<DomainArchive>`, and also update or delete it if needed.
+-   View records of any created `<SnapShot>` for a given `<DomainArchive>`
 
 Data Model
 -------------
