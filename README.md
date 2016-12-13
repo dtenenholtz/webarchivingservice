@@ -65,20 +65,13 @@ Setup and running the service (assuming a bash terminal and GNU/Linux OS)
     $ virtualenv venv
     ```
 
-2.  Install dependencies:
-   ```
-   $ pip install -r requirements.txt
-   ``` 
-    
-3. `cd` to the directory where you extracted the webarchivingservice project to, and activate your `virtualenv` with the command 
+2.  `cd` to the directory where you extracted the webarchivingservice project to, and activate your `virtualenv` with the command 
     ```
     $ . venv/bin/activate
     ```
-4. Start the server:
-   ```
-   $ python server.py
-   ```
+3. Start the server:   
+    ```
+    $ python server.py
+    ```
 
-
-
-
+That's it!
