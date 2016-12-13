@@ -39,11 +39,22 @@ For a `<SnapShot>`:
 -   @type
 -   @id
 
+
 Vocabularies
 ------------
-We use the schema.org vocabularies to express conceptually what the properties of each resource mean.
-- any URL is expressed as `@type: http://schema.org/url`
-- any date is expressed as `@type: http://www.w3.org/2001/XMLSchema#`
+We use assorted schema.org, W3C, and dcterms vocabularies to express conceptually what the properties of each resource mean.
+
+-   any URL is expressed as `@type: http://schema.org/url`
+-   any literal with a datetime datatype is expressed as `@type: http://www.w3.org/2001/XMLSchema#`
+-   any createdate for a new resource is expressed as `@type: http://schema.org/dateCreated`
+-   a user that submits a domain to be archived is expressed as `@type: http://schema.org/creator`
+-   the title given by a user to a domain is expressed as `@type: http://schema.org/name`
+-   the description of a domain, provided by the user, is expressed as `@type: http://schema.org/description`
+-   the "runtime" for a snapshot capture is expressed as `@type: http://schema.org/Duration`
+-   the "depth" property for an archive plan is expressed as `@type: http://schema.org/depth`
+-   the "cycle" or "frequency" of snapshot capturing is expressed as `@type: http://purl.org/dc/terms/accrualPeriodicity"
+-   the "filename" for a `.warc` file is expressed as `@type: http://schema.org/name`
+-   the "size" for any associated `.warc` file created by a snapshot is expressed as `@type: http://schema.org/fileSize`
 
 
 Setup and running the service (assuming a bash terminal and GNU/Linux OS)
