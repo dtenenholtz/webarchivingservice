@@ -8,6 +8,7 @@
 <a rel="collection" href="{{ url_for('domainlist') }}">URL List</a>
 <h1>{{ archive.title }}</h1>
 <h2>{{ archive.description }}</h2>
+<p>Domain URL: <a href="http://{{ archive.url }}">{{ archive.url }}</a></p>
 
 
 {% if 'archiveplan' in archive.keys() %}
