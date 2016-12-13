@@ -52,7 +52,7 @@ We use assorted schema.org, W3C, and dcterms vocabularies to express conceptuall
 -   the description of a domain, provided by the user, is expressed as `@type: http://schema.org/description`
 -   the "runtime" for a snapshot capture is expressed as `@type: http://schema.org/Duration`
 -   the "depth" property for an archive plan is expressed as `@type: http://schema.org/depth`
--   the "cycle" or "frequency" of snapshot capturing is expressed as `@type: http://purl.org/dc/terms/accrualPeriodicity"
+-   the "cycle" or "frequency" of snapshot capturing is expressed as `@type: http://purl.org/dc/terms/accrualPeriodicity`
 -   the "filename" for a `.warc` file is expressed as `@type: http://schema.org/name`
 -   the "size" for any associated `.warc` file created by a snapshot is expressed as `@type: http://schema.org/fileSize`
 
