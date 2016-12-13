@@ -83,7 +83,8 @@
                                     "createdate": "2-7-16",
                                     "filename": "capture.warc"
                                 }
-                        },
+                        }
+                    },
             "0f4uqv": {
                 "@type": "webarchive:DomainList",
                 "@id": "0f4uqv",
