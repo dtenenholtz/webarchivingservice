@@ -60,14 +60,15 @@ We use assorted schema.org, W3C, and [dcterms](http://purl.org/dc/terms/) vocabu
 Setup and running the service (assuming a bash terminal and GNU/Linux OS)
 ----------------------------
 
-1. Install required dependencies (`python3.x`, `pip`, `virtualenv`, `Flask`, and `Flask-RESTful`, then run this command:
-   ```
-   $ pip install -r requirements.txt
-   ``` 
-2. Create a virtualenv with the command:
+1. Install required dependencies (`python3.x`, `pip`, `virtualenv`, `Flask`, and `Flask-RESTful`, then create a virtualenv with the command:
     ```
     virtualenv venv
     ```
+
+2.  Install dependencies:
+   ```
+   $ pip install -r requirements.txt
+   ``` 
     
 3. `cd` to the directory where you extracted the webarchivingservice project to, and activate your `virtualenv` with the command 
     ```
