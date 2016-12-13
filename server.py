@@ -49,9 +49,9 @@ def error_if_archives_not_found(archives_id):
         abort(404, message=message)
 
 # Respond with 404 Not Found if no archive plan with specified ID exists.
-def abort_if_archiveplan_not_found(archiveplan_id):
-    if archiveplan_id not in data['archiveplan']:
-        message = "No Archive Plan with ID: {}".format(archiveplan_id)
+def abort_if_archiveplan_not_found(archive_id):
+    if 'archiveplan' not in data['webdomains'][archive_id].keys():
+        message = "No Archive Plan for archive: {}".format(archive_id)
         abort(404, message=message)
 
 # Filter and sort a list of webdomains.
@@ -195,19 +195,20 @@ class DomainArchive(Resource):
         domainarchive['@id'] = domainarchive_id
         domainarchive['@type'] = 'webarchive:DomainArchive'
         domainarchive['createdate'] = datetime.isoformat(datetime.now())
-        # domainarchive['plan'] = ""
+        #domainarchive['archiveplan'] =
         print(domainarchive)
         data['webdomains'][domainarchive_id] = domainarchive
+        return '', 201
 
 class DomainArchiveAsJSON(Resource):
     def get(self):
         return data
 
 # define parsers for the 'cycle' and 'depth' inputs that a user supplies
-depth_parser = reqparse.RequestParser()
-depth_parser.add_argument('depth', type=str, default='')
+archiveplan_parser = reqparse.RequestParser()
+archiveplan_parser.add_argument('depth', type=str, default='')
+archiveplan_parser.add_argument('cycle', type=str, default='')
 
-cycle_parser = reqparse.RequestParser()
 #cycle_parser.add_argument['CYCLE']
 
 
@@ -219,20 +220,20 @@ class ArchivePlan(Resource):
                 data['webdomains'][archive_id], 'plan'), 200)
 
     def put(self, archive_id):
-        depth_args = depth_parser.parse_args()
-        cycle_args = cycle_parser.parse_args()
+        print(data)
 
-        plan_cycle = {'cycle': cycle_args['cycle']}
-        plan_depth = {'depth': depth_args['depth']}
+        archiveplan_args = archiveplan_parser.parse_args()
 
-        depth_to_update = data['archiveplan'][archiveplan_id].depth
-        cycle_to_update = data['archiveplan'][archiveplan_id].cycle
+        print(archiveplan_args)
+
+        data['webdomains'][archive_id]['archiveplan']['depth'] = archiveplan_args['depth']
+        data['webdomains'][archive_id]['archiveplan']['cycle'] = archiveplan_args['cycle']
 
         return make_response(render_as_html(data['webdomains'][archive_id], 'plan'), 200)
 
-    def delete(self, archiveplan_id):
-        abort_if_archiveplan_not_found(archiveplan_id)
-        del data['archiveplan'][archiveplan_id]
+    def delete(self, archive_id):
+        abort_if_archiveplan_not_found(archive_id)
+        del data['webdomains'][archive_id]['archiveplan']
         return '', 204
 
 class SnapShot(Resource):
