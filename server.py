@@ -154,8 +154,9 @@ class DomainList(Resource):
             render_as_html(
                 data, 'domainlist'), 200)
 
-
-
+class DomainListAsJSON(Resource):
+    def get(self):
+        return data
 
 class DomainArchive(Resource):
     def get(self, archive_id):
@@ -171,10 +172,12 @@ class DomainArchive(Resource):
         newSnapShot['createdate'] = datetime.isoformat(datetime.now())
         data['webdomains'][archive_id][newSnapShot_id] = newSnapShot
         return '', 201
-
+      
 class DomainArchiveAsJSON(Resource):
-    def get(self):
-        return data
+    def get(self, domainarchive_id):
+        domainarchive = data['webdomains'][domainarchive_id]
+        domainarchive['@context'] = data['@context']
+        return domainarchive
 
 # define parsers for the 'cycle' and 'depth' inputs that a user supplies
 archiveplan_parser = reqparse.RequestParser()
@@ -220,6 +223,7 @@ app = Flask(__name__)
 api = Api(app)
 
 api.add_resource(DomainList, '/domains')
+api.add_resource(DomainListAsJSON, '/domains.json')
 api.add_resource(DomainArchive, '/domains/<string:archive_id>')
 api.add_resource(DomainArchiveAsJSON, '/domains/<string:domainarchive_id>.json')
 api.add_resource(ArchivePlan, '/plan/<string:archive_id>')
