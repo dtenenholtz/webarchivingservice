@@ -21,8 +21,8 @@ For a `<DomainArchive>`:
 -   title
 -   description
 -   owner
--   @id
 -   @type
+-   @id
 
 
 For an `<ArchivePlan>`:
