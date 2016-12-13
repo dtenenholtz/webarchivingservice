@@ -1,46 +1,68 @@
-This is an example of a simple web API implemented using
-[Flask](http://flask.pocoo.org/) and
-[Flask-RESTful](http://flask-restful.readthedocs.org/en/latest/).
+About
+------
+This is a basic information service that allows users to archive web sites, capturing sites on a time-based frequency. It implements [Flask](http://flask.pocoo.org/), [Flask-RESTful](http://flask-restful.readthedocs.org/en/latest/), and [JSON-LD](http://json-ld.org/). A user can take the following actions:
 
-To run it:
+-Add a `<DomainArchive>` resource to the `<DomainList>`
+-Create an `<ArchivePlan>` for a given `<DomainArchive>`, and also update or delete it if needed.
+-View records of any created `<SnapShot>` for a given `<DomainArchive>`
 
-1. Install required dependencies:
+Data Model
+-------------
+The service is designed with four resource classes (`<DomainList>`, `<DomainArchive>`, `<ArchivePlan>`, and `<SnapShot>`).  It uses a single vocabulary to describe a [Collection](http://pcdm.org/models#Collection/) and an [Object](http://pcdm.org/models#Object/) as per the [Portland Common Data Model](http://pcdm.org/models#).  See the full data model as a  [Graph Diagram](https://www.lucidchart.com/documents/view/41c50efb-2ce9-4d33-9509-52cdf08eb25c) to view the way these four resources are linked togther through the `rdfs:member` property.
+
+Properties
+-----------
+The `<DomainList>` is a list resource that has as a `rdfs:member` various archive resource classes. The other three resource classes each have properties as follows:
+
+
+For a <DomainArchive>:
+-   URL
+-   createdate
+-   title
+-   description
+-   owner
+-   @id
+-   @type
+
+
+For an <ArchivePlan>:
+-   frequency
+-   depth
+-   @type
+-   @id
+
+For a <SnapShot>:
+-   size
+-   runtime
+-   date
+-   filename
+-   @type
+-   @id
+
+Vocabularies
+------------
+We use the schema.org vocabularies to express conceptually what the properties of each resource mean.
+- any URL is expressed as `@type: http://schema.org/url`
+- any date is expressed as `@type: http://www.w3.org/2001/XMLSchema#`
+
+
+Setup and running the service (assuming a bash terminal and GNU/Linux OS)
+----------------------------
+
+1. Install required dependencies (`python3.x`, `pip`, `virtualenv`, `Flask`, and `Flask-RESTful`, then run this command:
    ```
    $ pip install -r requirements.txt
    ``` 
-   [Flask](http://flask.pocoo.org/docs/0.10/installation/#installation)
-   and
-   [Flask-RESTful](http://flask-restful.readthedocs.org/en/latest/installation.html) to run `server.py` 
-   and [RDFLib](http://rdflib.readthedocs.org/en/latest/) and [JSONLD for RDFLib](https://github.com/RDFLib/rdflib-jsonld) to run the `extractdata.py` script or the `another-server.py` service.
-
-2. Run the helpdesk server:
+   
+2. `cd` to the directory where you extracted the webarchivingservice project to, and activate your `virtualenv` with the command 
+    ```
+    . venv/bin/activate
+    ```
+3. Start the server:
    ```
    $ python server.py
    ```
-   Alternatively, you can access the service running here: http://aeshin.org:5555/requests
-   
-3. Use the `extractdata.py` script to examine the triples found in various representations of the helpdesk resources.
-   
-   RDFa/microdata for the list of help requests:
-   ```
-   $ python extractdata.py http://aeshin.org:5555/requests
-   ```
-   JSON-LD for the list of help requests:
-   ```
-   $ python extractdata.py http://aeshin.org:5555/requests.json
-   ```
-   RDFa/microdata for an individual help request:
-   ```
-   $ python extractdata.py http://aeshin.org:5555/request/fhs6jo
-   ```
-   JSON-LD for an individual help request:
-   ```
-   $ python extractdata.py http://aeshin.org:5555/request/fhs6jo.json
-   ```
 
-4. Run the contacts server for an example of a service calling another service:
-   ```
-   $ python another-server.py
-   ```
-   Alternatively, you can access the service running here: http://aeshin.org:5556/contacts.json
-   
+
+
+
