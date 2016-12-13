@@ -84,7 +84,7 @@
 
                       "runtime": "00:00:10:47",
 
-                      "createdate": "2-7-16",
+                      "createdate": "2-14-16",
 
                       "filename": "capture.warc"
 
@@ -103,7 +103,7 @@
 
                 "title": "UNC-SILS Homepage",
 
-                "createdate": "datetime",
+                "createdate": "2-7-16",
 
                 "owner":  "myemail@example.com",
 
@@ -149,7 +149,7 @@
 
                                     "runtime": "00:00:10:47",
 
-                                    "createdate": "2-7-16",
+                                    "createdate": "2-14-16",
 
                                     "filename": "capture.warc"
 
@@ -167,7 +167,7 @@
 
                 "title": "Documenting the American South homepage",
 
-                "createdate": "datetime",
+                "createdate": "5-11-16",
 
                 "owner":  "myemail@example.com",
 
@@ -198,7 +198,7 @@
 
                                     "runtime": "00:00:10:47",
 
-                                    "createdate": "2-7-16",
+                                    "createdate": "5-11-16",
 
                                     "filename": "capture.warc"
 
@@ -214,7 +214,7 @@
 
                                     "runtime": "00:00:10:47",
 
-                                    "createdate": "2-7-16",
+                                    "createdate": "5-18-16",
 
                                     "filename": "capture.warc"
 
