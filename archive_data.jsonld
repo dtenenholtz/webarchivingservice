@@ -10,13 +10,12 @@
         "createdate": "http://schema.org/dateCreated",
         "owner": "http://schema.org/creator",
         "description": "http://schema.org/description",
-                                "depth": "http://schema.org/depth",
-                        "cycle": "http://purl.org/dc/terms/accrualPeriodicity",
-                                                "size": "http://schema.org/fileSize",
-                        "runtime": "http://schema.org/Duration",
-                        "filename": "http://schema.org/name"
-                        
-    },
+        "depth": "http://schema.org/depth",
+        "cycle": "http://purl.org/dc/terms/accrualPeriodicity",
+        "size": "http://schema.org/fileSize",
+        "runtime": "http://schema.org/Duration",
+        "filename": "http://schema.org/name"
+       },
     "@id": "domains",
     "webdomains": { 
         "fhs6jo" : {
@@ -61,30 +60,30 @@
                 "owner":  "myemail@example.com",
                 "description": "This is the homepage for the School of Information and Library Science at UNC.",
                 "archiveplan": {
-                                    "@type": "webarchive:ArchivePlan",
-                                    "@id": "ob9wm0",
-                                    "depth": "1",
-                                    "cycle": "weekly"
-                                    },
-            "snapshots": {
-                                "f3ns14": {
-                                    "@type": "webarchive:SnapShot",
-                                    "@id": "f3ns14",
-                                    "size": "4gb",
-                                    "runtime": "00:00:10:47",
-                                    "createdate": "2-7-16",
-                                    "filename": "capture.warc"
-                            },
-                                "ght2j5": {
-                                    "@type": "webarchive:SnapShot",
-                                    "@id": "ght2j5",
-                                    "size": "4gb",
-                                    "runtime": "00:00:10:47",
-                                    "createdate": "2-7-16",
-                                    "filename": "capture.warc"
-                                }
-                        }
-                    },
+                    "@type": "webarchive:ArchivePlan",
+                    "@id": "ob9wm0",
+                    "depth": "1",
+                    "cycle": "weekly"
+                 },
+                "snapshots": {
+                    "f3ns14": {
+                        "@type": "webarchive:SnapShot",
+                        "@id": "f3ns14",
+                        "size": "4gb",
+                        "runtime": "00:00:10:47",
+                        "createdate": "2-7-16",
+                        "filename": "capture.warc"
+                     },
+                    "ght2j5": {
+                        "@type": "webarchive:SnapShot",
+                        "@id": "ght2j5",
+                        "size": "4gb",
+                        "runtime": "00:00:10:47",
+                        "createdate": "2-7-16",
+                        "filename": "capture.warc"
+                      }
+                  }
+              },
             "0f4uqv": {
                 "@type": "webarchive:DomainList",
                 "@id": "0f4uqv",
@@ -94,31 +93,30 @@
                 "owner":  "myemail@example.com",
                 "description": "This is the homepage for the digital resources called Documenting the American South, hosted at UNC.",
                 "archiveplan": {
-          
-                                    "@type": "webarchive:ArchivePlan",
-                                    "@id": "pl12dk",
-                                    "depth": "1",
-                                    "cycle": "weekly"
-                                    },
+                    "@type": "webarchive:ArchivePlan",
+                    "@id": "pl12dk",
+                    "depth": "1",
+                    "cycle": "weekly"
+                },
                 "snapshots": {
-                                "w2iop9": {
-                                    "@type": "webarchive:SnapShot",
-                                    "@id": "w2iop9",
-                                    "size": "4gb",
-                                    "runtime": "00:00:10:47",
-                                    "createdate": "2-7-16",
-                                    "filename": "capture.warc"
-                            },
-                                "0asfh1": {
-                                    "@type": "webarchive:SnapShot",
-                                    "@id": "0asfh1",
-                                    "size": "4gb",
-                                    "runtime": "00:00:10:47",
-                                    "createdate": "2-7-16",
-                                    "filename": "capture.warc"
-                                }
-                        }
-        }
-        }
+                    "w2iop9": {
+                        "@type": "webarchive:SnapShot",
+                        "@id": "w2iop9",
+                        "size": "4gb",
+                        "runtime": "00:00:10:47",
+                        "createdate": "2-7-16",
+                        "filename": "capture.warc"
+                    },
+                    "0asfh1": {
+                        "@type": "webarchive:SnapShot",
+                        "@id": "0asfh1",
+                        "size": "4gb",
+                        "runtime": "00:00:10:47",
+                        "createdate": "2-7-16",
+                        "filename": "capture.warc"
+                    }
+              }
+          }
+       }
     }
     
