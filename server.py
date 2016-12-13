@@ -8,23 +8,20 @@ import random
 # from functools import wraps
 from datetime import datetime
 
-
-# Define our capture frequency.
-# These are the values that the "cycle" property can take on an archive plan.
-CYCLE = ('daily', 'weekly', 'bi-weekly', 'monthly', 'quarterly')
-
-#Define depth of capture (number of jumps within the site's domain from the origin page)
-# The
-#DEPTH = range(start='':4)
-
-# define parsers for the 'cycle' and 'depth' inputs that a user supplies
+# parse new archive post request
 archives_parser = reqparse.RequestParser()
-archives_parser.add_argument("frequency", type=str, default='')
 archives_parser.add_argument("description", type=str, default='')
 archives_parser.add_argument("owner", type=str, default='')
 archives_parser.add_argument("url", type=str, default='')
 archives_parser.add_argument("title", type=str, default='')
+archives_parser.add_argument("cycle", type=str, default='')
+archives_parser.add_argument("depth", type=str, default='')
 
+#parse new snapshot post request
+snapshot_parser = reqparse.RequestParser()
+snapshot_parser.add_argument("size", type=str, default='')
+snapshot_parser.add_argument("runtime", type=str, default='')
+snapshot_parser.add_argument("filename", type=str, default='')
 
 # Load data from disk.
 # This simply loads the data from our "database," which is just a JSON file.
@@ -118,15 +115,6 @@ def render_snapshot_as_html(pageData, id):
             archive=pageData,
             snapshot_id=id)
 
-'''
-# Given the data for a list of web archives, generate an HTML representation
-# of that list.
-def render_webdomains_list_as_html(webdomains):
-    return render_template(
-        'domainList.html',
-        webdomains=webdomains)
-'''
-
 # Raises an error if the string x is empty (has zero length).
 def nonempty_string(x):
     s = str(x)
@@ -137,32 +125,11 @@ def nonempty_string(x):
 
 # Specify the data necessary to create a new web archive.
 # "owner", "title", and "description" are all required values.
-new_webdomains_parser = reqparse.RequestParser()
+new_archive_parser = reqparse.RequestParser()
 for arg in ['owner', 'url', 'title', 'frequency', 'description']:
-    new_webdomains_parser.add_argument(
+    new_archive_parser.add_argument(
         arg, type=nonempty_string, required=True,
         help="'{}' is a required value".format(arg))
-
-
-# Specify the data necessary to update an existing archives plan.
-# Only the cycle and depth can be updated.
-update_archivesplan_parser = reqparse.RequestParser()
-update_archivesplan_parser.add_argument(
-    'cycle', type=str, default=CYCLE.index('weekly'))
-update_archivesplan_parser.add_argument(
-    'depth', type=int, default=1)
-
-'''
-# Specify the parameters for filtering and sorting .
-# See `filter_and_sort_archives` above.
-query_parser = reqparse.RequestParser()
-query_parser.add_argument(
-    'query', type=str, default='')
-query_parser.add_argument(
-    # edit to parse archives
-    # 'sort_by', type=str, choices=('depth', 'time'), default='time')
-)
-'''
 
 class DomainList(Resource):
 
@@ -173,15 +140,22 @@ class DomainList(Resource):
                 data, 'domainlist'), 200)
 
     def post(self):
-        webdomains = new_webdomains_parser.parse_args()
-        webdomains_id = generate_id()
-        webdomains['@id'] = webdomains_id
-        webdomains['@type'] = 'webarchive:DomainList'
-        webdomains['createdate'] = datetime.isoformat(datetime.now())
-        data['webdomains'][webdomains_id] = webdomains
+        newArchiveArgs = archives_parser.parse_args()
+        newArchive = {"description": newArchiveArgs['description'], "owner": newArchiveArgs['owner'], "url": newArchiveArgs['url'], "title": newArchiveArgs['title']}
+        newArchive_id = generate_id()
+        newArchivePlan_id = generate_id()
+        newArchive['@id'] = newArchive_id
+        newArchive['@type'] = 'webarchive:DomainList'
+        newArchive['createdate'] = datetime.isoformat(datetime.now())
+        newArchive['archiveplan'] = {"@type": "webarchive:ArchivePlan", "@id": newArchivePlan_id, "depth": newArchiveArgs['depth'], "cycle": newArchiveArgs['cycle']}
+        print(newArchive)
+        data['webdomains'][newArchive_id] = newArchive
         return make_response(
             render_as_html(
                 data, 'domainlist'), 200)
+
+
+
 
 class DomainArchive(Resource):
     def get(self, archive_id):
@@ -189,15 +163,13 @@ class DomainArchive(Resource):
             render_as_html(
                 data['webdomains'][archive_id], 'archive'), 200)
 
-    def post(self):
-        domainarchive = archives_parser.parse_args()
-        domainarchive_id = generate_id()
-        domainarchive['@id'] = domainarchive_id
-        domainarchive['@type'] = 'webarchive:DomainArchive'
-        domainarchive['createdate'] = datetime.isoformat(datetime.now())
-        #domainarchive['archiveplan'] =
-        print(domainarchive)
-        data['webdomains'][domainarchive_id] = domainarchive
+    def post(self, archive_id):
+        newSnapShot = snapshot_parser.parse_args()
+        newSnapShot_id = generate_id()
+        newSnapShot['@id'] = newSnapShot_id
+        newSnapShot['@type'] = 'webarchive:DomainArchive'
+        newSnapShot['createdate'] = datetime.isoformat(datetime.now())
+        data['webdomains'][archive_id][newSnapShot_id] = newSnapShot
         return '', 201
 
 class DomainArchiveAsJSON(Resource):
@@ -220,14 +192,14 @@ class ArchivePlan(Resource):
                 data['webdomains'][archive_id], 'plan'), 200)
 
     def put(self, archive_id):
-        print(data)
 
         archiveplan_args = archiveplan_parser.parse_args()
 
-        print(archiveplan_args)
+        if archiveplan_args['depth'] == '':
+            data['webdomains'][archive_id]['archiveplan']['cycle'] = archiveplan_args['cycle']
 
-        data['webdomains'][archive_id]['archiveplan']['depth'] = archiveplan_args['depth']
-        data['webdomains'][archive_id]['archiveplan']['cycle'] = archiveplan_args['cycle']
+        else:
+            data['webdomains'][archive_id]['archiveplan']['depth'] = archiveplan_args['depth']
 
         return make_response(render_as_html(data['webdomains'][archive_id], 'plan'), 200)
 
