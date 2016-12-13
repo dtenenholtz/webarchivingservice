@@ -45,7 +45,6 @@ Vocabularies
 We use assorted schema.org, W3C, and [dcterms](http://purl.org/dc/terms/) vocabularies to express conceptually what the properties of each resource mean.
 
 -   any URL is expressed as `@type: http://schema.org/url`
--   any literal with a datetime datatype is expressed as `@type: https://www.w3.org/TR/xmlschema11-2/#dateTime`
 -   any createdate for a new resource is expressed as `@type: http://schema.org/dateCreated`
 -   a user that submits a domain to be archived is expressed as `@type: http://schema.org/creator`
 -   the title given by a user to a domain is expressed as `@type: http://schema.org/name`
