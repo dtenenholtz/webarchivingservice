@@ -45,52 +45,64 @@
             "description": "This is the homepage for UNC's digital collections.",
 
             "archiveplan": {
+                "@context": 
+                    {
+                        "depth": "http://schema.org/depth",
+                        "cycle": "http://purl.org/dc/terms/accrualPeriodicity"
+                    },
 
-                                    "@type": "webarchive:ArchivePlan",
+                "@type": "webarchive:ArchivePlan",
 
-                                    "@id": "ob9w12",
+                "@id": "ob9w12",
 
-                                    "depth": "1",
+                "depth": "1",
 
-                                    "cycle": "weekly"
+                "cycle": "weekly"
 
-                                    },
+                },
 
             "snapshots": {
+                "@context":
+                    {
+                        "size": "http://schema.org/fileSize",
+                        "runtime": "http://schema.org/Duration",
+                        "filename": "http://schema.org/name"
+                    },
 
-                                "f3nsq6": {
+                "f3nsq6": {
 
-                                    "@type": "webarchive:SnapShot",
+                    "@type": "webarchive:SnapShot",
 
-                                    "@id": "f3nsq6",
+                    "@id": "f3nsq6",
 
-                                    "size": "4gb",
+                    "size": "4gb",
 
-                                    "runtime": "00:00:10:47",
+                    "runtime": "00:00:10:47",
 
-                                    "date": "2-7-16",
+                    "createdate": "2-7-16",
 
-                                    "filename": "capture.warc"
+                    "filename": "capture.warc"
 
-                            },
+                    },
 
-                                "ihylej": {
+                "ihylej": {
 
-                                    "@type": "webarchive:SnapShot",
+                    "@type": "webarchive:SnapShot",
 
-                                    "@id": "ihylej",
+                    "@id": "ihylej",
 
-                                    "size": "4gb",
+                    "size": "4gb",
 
-                                    "runtime": "00:00:10:47",
+                    "runtime": "00:00:10:47",
 
-                                    "date": "2-7-16",
+                    "createdate": "2-7-16",
 
-                                    "filename": "capture.warc"
+                    "filename": "capture.warc"
 
-                                }
+                }
 
-                        }},
+            }
+        },
 
             "dig73h" : { 
 
@@ -110,6 +122,12 @@
 
                 "archiveplan": {
 
+                "@context": 
+                    {
+                        "depth": "http://schema.org/depth",
+                        "cycle": "http://purl.org/dc/terms/accrualPeriodicity"
+                    },
+
                                     "@type": "webarchive:ArchivePlan",
 
                                     "@id": "ob9wm0",
@@ -121,6 +139,12 @@
                                     },
 
             "snapshots": {
+                "@context":
+                    {
+                        "size": "http://schema.org/fileSize",
+                        "runtime": "http://schema.org/Duration",
+                        "filename": "http://schema.org/name"
+                    },
 
                                 "f3ns14": {
 
@@ -132,7 +156,7 @@
 
                                     "runtime": "00:00:10:47",
 
-                                    "date": "2-7-16",
+                                    "createdate": "2-7-16",
 
                                     "filename": "capture.warc"
 
@@ -148,7 +172,7 @@
 
                                     "runtime": "00:00:10:47",
 
-                                    "date": "2-7-16",
+                                    "createdate": "2-7-16",
 
                                     "filename": "capture.warc"
 
@@ -174,6 +198,12 @@
 
                 "archiveplan": {
 
+                "@context": 
+                    {
+                        "depth": "http://schema.org/depth",
+                        "cycle": "http://purl.org/dc/terms/accrualPeriodicity"
+                    },
+
                                     "@type": "webarchive:ArchivePlan",
 
                                     "@id": "pl12dk",
@@ -185,6 +215,12 @@
                                     },
 
                 "snapshots": {
+                    "@context":
+                    {
+                        "size": "http://schema.org/fileSize",
+                        "runtime": "http://schema.org/Duration",
+                        "filename": "http://schema.org/name"
+                    },
 
                                 "w2iop9": {
 
@@ -196,7 +232,7 @@
 
                                     "runtime": "00:00:10:47",
 
-                                    "date": "2-7-16",
+                                    "createdate": "2-7-16",
 
                                     "filename": "capture.warc"
 
@@ -212,7 +248,7 @@
 
                                     "runtime": "00:00:10:47",
 
-                                    "date": "2-7-16",
+                                    "createdate": "2-7-16",
 
                                     "filename": "capture.warc"
 
