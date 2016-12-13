@@ -5,38 +5,23 @@
 <title>{{ archive.title }}</title>
 </head>
 <body>
-<a rel="collection" href="{{ url_for('domainlist') }}">URL List</a>
+<a rel="collection" href="{{ url_for('domainList', domainlist_id=archive.domainlist_id) }}">URL List</a>
 <h1>{{ archive.title }}</h1>
-<h2>{{ archive.description }}</h2>
 
+<a href="{{ url_for('DomainPlan', domainPlan_id=archive.domainPlan_id) }}"></a>
 
-{% if 'archiveplan' in archive.keys() %}
-<p>Archive Plan: <a href="{{ url_for('archiveplan', archive_id=archive['@id']) }}">Archive Plan</a></p>
-{% else %}
-
-<p>Archive Plan: No archive plan is set for this archive.</p>
-
-{% endif %}
-
-
-<h2>Created: {{ archive.createdate }}</h2>
+<p>{{ archive.startdate }}</p>
 
 <h2>Snapshots</h2>
 <div class="web-archive">
 <ul>
-    {% if archive.snapshots %}
-{% for key, snapshot in archive.snapshots.items() %}
+{{% for snapshot in archive.snapshots %}}
 
-<li class="capture"><a rel="record" href="{{ url_for('snapshot', archive_id=archive['@id'], snapshot_id=snapshot['@id']) }}">Capture {{ snapshot['@id'] }}</a><br/>{{ snapshot.date }}</li>
+<li class="capture"><a rel="record" href="{{ url_for('snapshot', snapshot_id=snapshot.snapshot_id) }}">Capture {{ snapshot.sequence }}</a></br>{{ snapshot.date }}</li>
 
-{% endfor %}
-    {% else %}
-
-    <p>No Snapshots!</p>
-    {% endif %}
-
-
+{{% endfor %}}
 </ul>
-</div>
+<div>
+
 </body>
-</html>
+<html>
