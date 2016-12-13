@@ -5,21 +5,43 @@
 </head>
 <body>
 
+<a href="{{ url_for('domainarchive', archive_id=archive['@id']) }}">Archive</a>
+<h1>Plan: {{ archive.title }}</h1>
+
 <ul>
-<li>Frequency: {{ plan.frequency }}</li>	   
-<li>Depth: {{ plan.depth }}</li>	
+<li>Frequency: {{ archive.archiveplan.cycle }}</li>
+<li>Depth: {{ archive.archiveplan.depth }}</li>
 </ul>
 
-<form action="{{ url_for('archivePlan', archivePlan_id=plan.id) }}" method="post">
+<form id="cycleForm" action="{{ url_for('archiveplan', archive_id=archive['@id']) }}" method="put">
 <h2>Change Frequency</h2>
-<select name="frequency">
+<select name="cycle">
 	<option value="daily">Daily</option>
 	<option value="weekly">Weekly</option>
 	<option value="bi-weekly">Bi-Weekly</option>
 	<option value="monthly">Monthly</option>
 	<option value="quarterly">Quarterly</option>
-	<input type="submit" value="Submit">
+	<input id="cycleButton" type="submit" value="Submit">
 </select>
+	<script>
+    var cycleForm = document.getElementById('cycleForm');
+    var cycleButton = document.getElementById('cycleButton');
+
+    cycleButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      var request = new XMLHttpRequest();
+      request.open('PUT', window.location.pathname);
+      request.onreadystatechange = function () {
+        if (XMLHttpRequest.DONE === request.readyState
+            && 200 === request.status) {
+          window.location="{{ url_for('archiveplan', archive_id=archive['@id']) }}";
+        }
+      }
+      request.send(new FormData(cycleForm));
+    }, false);
+  </script>
+	</form>
+<form id="depthForm" action="{{ url_for('archiveplan', archive_id=archive['@id']) }}" method="put">
 <h2>Change Depth</h2>
 <select name="depth">
 	<option value=1>1</option>
@@ -27,9 +49,49 @@
 	<option value=3>3</option>
 	<option value=4>4</option>
 	<option value=5>5</option>
-	<input type="submit" value="Submit">
 </select>
+	<input id="depthButton" type="submit" value="Submit">
+	<script>
+    var depthForm = document.getElementById('depthForm');
+    var depthButton = document.getElementById('depthButton');
+
+    depthButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      var request = new XMLHttpRequest();
+      request.open('PUT', window.location.pathname);
+      request.onreadystatechange = function () {
+        if (XMLHttpRequest.DONE === request.readyState
+            && 200 === request.status) {
+          window.location="{{ url_for('archiveplan', archive_id=archive['@id']) }}";
+        }
+      }
+      request.send(new FormData(depthForm));
+    }, false);
+  </script>
 </form>
+
+<form id="deleteForm" method="get" action="{{ url_for('archiveplan', archive_id=archive['@id']) }}">
+<input id="deleteButton" type="submit" value="Delete">
+	<script>
+    var form = document.getElementById('deleteForm');
+    var button = document.getElementById('deleteButton');
+
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      var request = new XMLHttpRequest();
+      request.open('DELETE', window.location.pathname);
+      request.onreadystatechange = function () {
+        if (XMLHttpRequest.DONE === request.readyState
+            && 204 === request.status) {
+          window.location="{{ url_for('domainarchive', archive_id=archive['@id']) }}";
+        }
+      }
+      request.send(new FormData(form));
+    }, false);
+  </script>
+
+	</form>
+
 
 </body>
 </html>

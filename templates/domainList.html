@@ -2,16 +2,17 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>{{ domainlist }}</title>
+<title>Domain List</title>
 </head>
 <body>
 
-	<h2>Archives</h2>
+	<h1>Archives</h1>
 <div class="archive-list">
-{% for domainarchive_id, domainarchive in domainarchives %}
-	<li><a class="archived_url" rel="item" href="{{ url_for('domainarchive', domainarchive_id=domainarchive_id) }}"></a></li>
+    <ul>
+{% for key, archive in webdomains.webdomains.items() %}
+	<li><a class="archived_url" rel="item" href="{{ url_for('domainarchive', archive_id=archive['@id']) }}">{{ archive.title }}</a></li>
 	{% endfor %}
-
+</ul>
 </div>
 
 <br/>
@@ -19,27 +20,37 @@
 Submit a URL to be archived:<br/><br/>  
 <form class="add_to_archive_list" action="{{ url_for('domainlist') }}" method="post">
      Your Name:<br/>
-        <input type="text" name="name" value="">
+        <input type="text" name="owner" value="">
         <br/>
+    Title of Site:<br/>
+    <input type="text" name="title" value="">
         <br/>
         URL to Archive:<br>
   	<input class="archived-url" type="text" name="url" value="">
-  	<br/><br/>
-     Frequency of Archive:<br/><br/>
-      <select name="frequency">
+  	<br/>
+    Description of Site:<br/>
+     <textarea style='width:300px;height:200px;' name="description" placeholder="Enter a description of your site..."></textarea>
+    <br/>
+     Frequency of Archive:<br/>
+      <select name="cycle">
         <option value="daily">Daily</option>
         <option value="weekly">Weekly</option>
         <option value="bi-weekly">Bi-Weekly</option>
         <option value="monthly">Monthly</option>
         <option value="quarterly">Quarterly</option>
         </select>
-        <br/>
-        <br/>
-     Date on which to begin Archiving URL:<br/>
-        <input type="date" name="archive_start" value="">
-       <br>	
-  <br>
+       <br/><br/>
+        Depth:<br/>
+        <select name="depth">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+        </select>
+  <br/><br/>
   <input type="submit" value="Submit">
+
 </form>
 
 </body>
