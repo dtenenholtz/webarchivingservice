@@ -1,32 +1,26 @@
 {
 
-    "@context": {
+  "@context": {
 
-        "webarchive": "https://rawgit.com/mcdowney/webarchivingservice/master/webarch_vocab.ttl#",
+    "webarchive": "https://rawgit.com/mcdowney/webarchivingservice/master/webarch_vocab.ttl#",
 
-        "webdomains": {
+    "webdomains": {
 
-            "@container": "@index",
+      "@container": "@index",
+      "id": "http://www.w3.org/2000/01/rdf-schema#member"
 
-            "@id": "http://www.w3.org/2000/01/rdf-schema#member"
+    },
 
-        },
-
-        "url": "http://schema.org/url",
-
-        "title": "http://schema.org/name",
-
-        "createdate": "http://schema.org/dateCreated",
-
-        "owner": "http://schema.org/creator",
-
-        "description": "http://schema.org/description",
-                                "depth": "http://schema.org/depth",
-                        "cycle": "http://purl.org/dc/terms/accrualPeriodicity",
-                                                "size": "http://schema.org/fileSize",
-                        "runtime": "http://schema.org/Duration",
-                        "filename": "http://schema.org/name"
-
+    "url": "http://schema.org/url",
+    "title": "http://schema.org/name",
+    "createdate": "http://schema.org/dateCreated",
+    "owner": "http://schema.org/creator",
+    "description": "http://schema.org/description",
+    "depth": "http://schema.org/depth",
+    "cycle": "http://purl.org/dc/terms/accrualPeriodicity",
+    "size": "http://schema.org/fileSize",
+    "runtime": "http://schema.org/Duration",
+    "filename": "http://schema.org/name"
 
     },
 
@@ -44,60 +38,60 @@
 
             "title": "UNC Digital collections",
 
-        "createdate": "datetime",
+            "createdate": "datetime",
 
-        "owner": "myemail@example.com",
+            "owner": "myemail@example.com",
 
             "description": "This is the homepage for UNC's digital collections.",
 
             "archiveplan": {
 
-                "@type": "webarchive:ArchivePlan",
+                  "@type": "webarchive:ArchivePlan",
 
-                "@id": "ob9w12",
+                  "@id": "ob9w12",
 
-                "depth": "1",
+                  "depth": "1",
 
-                "cycle": "weekly"
+                  "cycle": "weekly"
 
-                },
+             },
 
             "snapshots": {
 
-                "f3nsq6": {
+                  "f3nsq6": {
 
-                    "@type": "webarchive:SnapShot",
+                      "@type": "webarchive:SnapShot",
 
-                    "@id": "f3nsq6",
+                      "@id": "f3nsq6",
 
-                    "size": "4gb",
+                      "size": "4gb",
 
-                    "runtime": "00:00:10:47",
+                      "runtime": "00:00:10:47",
 
-                    "createdate": "2-7-16",
+                      "createdate": "2-7-16",
 
-                    "filename": "capture.warc"
+                      "filename": "capture.warc"
 
-                    },
+                   },
 
-                "ihylej": {
+                  "ihylej": {
 
-                    "@type": "webarchive:SnapShot",
+                      "@type": "webarchive:SnapShot",
 
-                    "@id": "ihylej",
+                      "@id": "ihylej",
 
-                    "size": "4gb",
+                      "size": "4gb",
 
-                    "runtime": "00:00:10:47",
+                      "runtime": "00:00:10:47",
 
-                    "createdate": "2-7-16",
+                      "createdate": "2-7-16",
 
-                    "filename": "capture.warc"
+                      "filename": "capture.warc"
 
-                }
+                  }
 
-            }
-        },
+               }
+          },
 
             "dig73h" : {
 
@@ -159,8 +153,8 @@
 
                                     "filename": "capture.warc"
 
-                                } 
-
+                                }
+                            }
                         },
 
             "0f4uqv": {
@@ -227,8 +221,6 @@
                                 }
 
                         }
-        }
-
-        }
-    }
-    }
+            }
+      }
+}
