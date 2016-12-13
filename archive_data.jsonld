@@ -20,7 +20,13 @@
 
         "owner": "http://schema.org/creator",
 
-        "description": "http://schema.org/description"
+        "description": "http://schema.org/description",
+                                "depth": "http://schema.org/depth",
+                        "cycle": "http://purl.org/dc/terms/accrualPeriodicity",
+                                                "size": "http://schema.org/fileSize",
+                        "runtime": "http://schema.org/Duration",
+                        "filename": "http://schema.org/name"
+                        
 
     },
 
@@ -45,11 +51,6 @@
             "description": "This is the homepage for UNC's digital collections.",
 
             "archiveplan": {
-                "@context": 
-                    {
-                        "depth": "http://schema.org/depth",
-                        "cycle": "http://purl.org/dc/terms/accrualPeriodicity"
-                    },
 
                 "@type": "webarchive:ArchivePlan",
 
@@ -62,12 +63,6 @@
                 },
 
             "snapshots": {
-                "@context":
-                    {
-                        "size": "http://schema.org/fileSize",
-                        "runtime": "http://schema.org/Duration",
-                        "filename": "http://schema.org/name"
-                    },
 
                 "f3nsq6": {
 
@@ -122,12 +117,6 @@
 
                 "archiveplan": {
 
-                "@context": 
-                    {
-                        "depth": "http://schema.org/depth",
-                        "cycle": "http://purl.org/dc/terms/accrualPeriodicity"
-                    },
-
                                     "@type": "webarchive:ArchivePlan",
 
                                     "@id": "ob9wm0",
@@ -139,12 +128,6 @@
                                     },
 
             "snapshots": {
-                "@context":
-                    {
-                        "size": "http://schema.org/fileSize",
-                        "runtime": "http://schema.org/Duration",
-                        "filename": "http://schema.org/name"
-                    },
 
                                 "f3ns14": {
 
@@ -178,7 +161,7 @@
 
                                 }
 
-                        }},
+                        },
 
             "0f4uqv": {
 
@@ -198,12 +181,7 @@
 
                 "archiveplan": {
 
-                "@context": 
-                    {
-                        "depth": "http://schema.org/depth",
-                        "cycle": "http://purl.org/dc/terms/accrualPeriodicity"
-                    },
-
+          
                                     "@type": "webarchive:ArchivePlan",
 
                                     "@id": "pl12dk",
@@ -214,13 +192,7 @@
 
                                     },
 
-                "snapshots": {
-                    "@context":
-                    {
-                        "size": "http://schema.org/fileSize",
-                        "runtime": "http://schema.org/Duration",
-                        "filename": "http://schema.org/name"
-                    },
+                "snapshots": 
 
                                 "w2iop9": {
 
