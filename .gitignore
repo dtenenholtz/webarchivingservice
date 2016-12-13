@@ -5,4 +5,3 @@ include/
 lib/
 local/
 share/
-secrets.py
