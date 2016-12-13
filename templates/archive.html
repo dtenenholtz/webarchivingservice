@@ -16,11 +16,15 @@
 <h2>Snapshots</h2>
 <div class="web-archive">
 <ul>
+    {% if archive.snapshots %}
 {% for key, snapshot in archive.snapshots.items() %}
 
 <li class="capture"><a rel="record" href="{{ url_for('snapshot', archive_id=archive['@id'], snapshot_id=snapshot['@id']) }}">Capture {{ snapshot['@id'] }}</a><br/>{{ snapshot.date }}</li>
 
 {% endfor %}
+    {% endif %}
+
+
 </ul>
 </div>
 
