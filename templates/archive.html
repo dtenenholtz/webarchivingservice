@@ -9,7 +9,15 @@
 <h1>{{ archive.title }}</h1>
 <h2>{{ archive.description }}</h2>
 
-<a href="{{ url_for('archiveplan', archive_id=archive['@id']) }}">Archive Plan</a>
+
+{% if 'archiveplan' in archive.keys() %}
+<p>Archive Plan: <a href="{{ url_for('archiveplan', archive_id=archive['@id']) }}">Archive Plan</a></p>
+{% else %}
+
+<p>Archive Plan: No archive plan is set for this archive.</p>
+
+{% endif %}
+
 
 <h2>Created: {{ archive.createdate }}</h2>
 
@@ -22,11 +30,13 @@
 <li class="capture"><a rel="record" href="{{ url_for('snapshot', archive_id=archive['@id'], snapshot_id=snapshot['@id']) }}">Capture {{ snapshot['@id'] }}</a><br/>{{ snapshot.date }}</li>
 
 {% endfor %}
+    {% else %}
+
+    <p>No Snapshots!</p>
     {% endif %}
 
 
 </ul>
 </div>
-
 </body>
 </html>
