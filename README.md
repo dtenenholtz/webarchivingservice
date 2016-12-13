@@ -62,7 +62,7 @@ Setup and running the service (assuming a bash terminal and GNU/Linux OS)
 
 1. Install required dependencies (`python3.x`, `pip`, `virtualenv`, `Flask`, and `Flask-RESTful`, then create a virtualenv with the command:
     ```
-    virtualenv venv
+    $ virtualenv venv
     ```
 
 2.  Install dependencies:
@@ -72,7 +72,7 @@ Setup and running the service (assuming a bash terminal and GNU/Linux OS)
     
 3. `cd` to the directory where you extracted the webarchivingservice project to, and activate your `virtualenv` with the command 
     ```
-    . venv/bin/activate
+    $ . venv/bin/activate
     ```
 4. Start the server:
    ```
