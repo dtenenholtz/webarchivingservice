@@ -15,7 +15,7 @@ Properties
 The `<DomainList>` is a list resource that has as a `rdfs:member` various archive resource classes. The other three resource classes each have properties as follows:
 
 
-For a <DomainArchive>:
+For a `<DomainArchive>`:
 -   URL
 -   createdate
 -   title
@@ -25,13 +25,13 @@ For a <DomainArchive>:
 -   @type
 
 
-For an <ArchivePlan>:
+For an `<ArchivePlan>`:
 -   frequency
 -   depth
 -   @type
 -   @id
 
-For a <SnapShot>:
+For a `<SnapShot>`:
 -   size
 -   runtime
 -   date
