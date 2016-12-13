@@ -12,7 +12,7 @@ The service is designed with four resource classes (`<DomainList>`, `<DomainArch
 
 Properties
 -----------
-The `<DomainList>` is a list resource that has as a `rdfs:member` various archive resource classes. The other three resource classes each have properties as follows:
+The `<DomainList>` is a list resource that has various <DomainArchive> resources, expressed as a property `rdfs:member`. The other three resource classes each have properties as follows:
 
 
 For a `<DomainArchive>`:
