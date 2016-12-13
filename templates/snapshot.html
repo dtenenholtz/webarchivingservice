@@ -2,15 +2,14 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>{{ archive.title }} </title>
+<title>{{ archive['createdate'] }} </title>
 </head>
 <body>
 <a rel="archives" href="{{ url_for('domainarchive', archive_id=archive['@id']) }}">Archive</a>
 
-<h1>Capture No. {{ archive['snapshots'][snapshot_id]['sequence'] }}</h1>
+<h1>Capture {{ archive['snapshots'][snapshot_id]['createdate'] }}</h1>
 <ul>
 <li>Size: {{ archive['snapshots'][snapshot_id]['size'] }}</li>
-<li>Date: {{ archive['snapshots'][snapshot_id]['date'] }}</li>
 <li>Runtime: {{ archive['snapshots'][snapshot_id]['runtime'] }}</li>
 </ul>
 <h3>File:</h3>
