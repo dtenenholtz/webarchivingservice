@@ -40,7 +40,7 @@
 
             "@type": "webarchive:DomainArchive",
 
-            "@id": "fhs6jo",
+            "@id": "domains/fhs6jo",
 
             "url": "dc.lib.unc.edu",
 
@@ -56,7 +56,7 @@
 
                   "@type": "webarchive:ArchivePlan",
 
-                  "@id": "ob9w12",
+                  "@id": "plan/ob9w12",
 
                   "depth": "1",
 
@@ -70,7 +70,7 @@
 
                       "@type": "webarchive:SnapShot",
 
-                      "@id": "fhs6jo/f3nsq6",
+                      "@id": "capture/fhs6jo/f3nsq6",
 
                       "size": "4gb",
 
@@ -86,7 +86,7 @@
 
                       "@type": "webarchive:SnapShot",
 
-                      "@id": "fhs6jo/ihylej",
+                      "@id": "capture/fhs6jo/ihylej",
 
                       "size": "4gb",
 
@@ -105,7 +105,7 @@
 
             "@type": "webarchive:DomainArchive",
 
-                "@id": "dig73h",
+                "@id": "domains/dig73h",
 
                 "url": "sils.unc.edu",
 
@@ -121,7 +121,7 @@
 
                                     "@type": "webarchive:ArchivePlan",
 
-                                    "@id": "ob9wm0",
+                                    "@id": "plan/ob9wm0",
 
                                     "depth": "1",
 
@@ -135,7 +135,7 @@
 
                                     "@type": "webarchive:SnapShot",
 
-                                    "@id": "dig73h/f3ns14",
+                                    "@id": "capture/dig73h/f3ns14",
 
                                     "size": "4gb",
 
@@ -151,7 +151,7 @@
 
                                     "@type": "webarchive:SnapShot",
 
-                                    "@id": "dig73h/ght2j5",
+                                    "@id": "capture/dig73h/ght2j5",
 
                                     "size": "4gb",
 
@@ -169,7 +169,7 @@
 
                 "@type": "webarchive:DomainArchive",
 
-                "@id": "0f4uqv",
+                "@id": "domains/0f4uqv",
 
                 "url": "docsouth.unc.edu",
 
@@ -186,7 +186,7 @@
 
                                     "@type": "webarchive:ArchivePlan",
 
-                                    "@id": "pl12dk",
+                                    "@id": "plan/pl12dk",
 
                                     "depth": "1",
 
@@ -200,7 +200,7 @@
 
                                     "@type": "webarchive:SnapShot",
 
-                                    "@id": "0f4uqv/w2iop9",
+                                    "@id": "capture/0f4uqv/w2iop9",
 
                                     "size": "4gb",
 
@@ -216,7 +216,7 @@
 
                                     "@type": "webarchive:SnapShot",
 
-                                    "@id": "0f4uqv/0asfh1",
+                                    "@id": "capture/0f4uqv/0asfh1",
 
                                     "size": "4gb",
 
