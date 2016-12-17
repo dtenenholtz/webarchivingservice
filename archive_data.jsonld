@@ -7,7 +7,7 @@
     "webdomains": {
 
       "@container": "@index",
-      "id": "http://www.w3.org/2000/01/rdf-schema#member"
+      "@id": "http://www.w3.org/2000/01/rdf-schema#member"
 
     },
 
