@@ -32,12 +32,13 @@
     },
 
     "@id": "domains",
+    "@type": "webarchive:DomainList",
 
     "webdomains": {
 
         "fhs6jo" : {
 
-            "@type": "webarchive:DomainList",
+            "@type": "webarchive:DomainArchive",
 
             "@id": "fhs6jo",
 
@@ -102,7 +103,7 @@
 
             "dig73h" : {
 
-            "@type": "webarchive:DomainList",
+            "@type": "webarchive:DomainArchive",
 
                 "@id": "dig73h",
 
@@ -166,7 +167,7 @@
 
             "0f4uqv": {
 
-                "@type": "webarchive:DomainList",
+                "@type": "webarchive:DomainArchive",
 
                 "@id": "0f4uqv",
 
