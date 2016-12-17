@@ -167,7 +167,7 @@ class DomainArchive(Resource):
     def post(self, archive_id):
         newSnapShot = snapshot_parser.parse_args()
         newSnapShot_id = generate_id()
-        newSnapShot['@id'] = newSnapShot_id
+        newSnapShot['@id'] = archive_id + '/' + newSnapShot_id
         newSnapShot['@type'] = 'webarchive:DomainArchive'
         newSnapShot['createdate'] = datetime.isoformat(datetime.now())
         data['webdomains'][archive_id][newSnapShot_id] = newSnapShot

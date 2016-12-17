@@ -11,6 +11,13 @@
 
     },
 
+    "snapshots": {
+
+      "@container": "@index",
+      "@id": "http://www.w3.org/2000/01/rdf-schema#member"
+
+    },
+
     "url": "http://schema.org/url",
     "title": "http://schema.org/name",
     "createdate": "http://schema.org/dateCreated",
@@ -62,7 +69,7 @@
 
                       "@type": "webarchive:SnapShot",
 
-                      "@id": "f3nsq6",
+                      "@id": "fhs6jo/f3nsq6",
 
                       "size": "4gb",
 
@@ -78,7 +85,7 @@
 
                       "@type": "webarchive:SnapShot",
 
-                      "@id": "ihylej",
+                      "@id": "fhs6jo/ihylej",
 
                       "size": "4gb",
 
@@ -127,7 +134,7 @@
 
                                     "@type": "webarchive:SnapShot",
 
-                                    "@id": "f3ns14",
+                                    "@id": "dig73h/f3ns14",
 
                                     "size": "4gb",
 
@@ -143,7 +150,7 @@
 
                                     "@type": "webarchive:SnapShot",
 
-                                    "@id": "ght2j5",
+                                    "@id": "dig73h/ght2j5",
 
                                     "size": "4gb",
 
@@ -192,7 +199,7 @@
 
                                     "@type": "webarchive:SnapShot",
 
-                                    "@id": "w2iop9",
+                                    "@id": "0f4uqv/w2iop9",
 
                                     "size": "4gb",
 
@@ -208,7 +215,7 @@
 
                                     "@type": "webarchive:SnapShot",
 
-                                    "@id": "0asfh1",
+                                    "@id": "0f4uqv/0asfh1",
 
                                     "size": "4gb",
 
