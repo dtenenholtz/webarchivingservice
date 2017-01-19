@@ -144,10 +144,15 @@ class DomainList(Resource):
         newArchive = {"description": newArchiveArgs['description'], "owner": newArchiveArgs['owner'], "url": newArchiveArgs['url'], "title": newArchiveArgs['title']}
         newArchive_id = generate_id()
         newArchivePlan_id = generate_id()
-        newArchive['@id'] = newArchive_id
+        newArchive['@id'] = 'domains/' + newArchive_id
         newArchive['@type'] = 'webarchive:DomainList'
         newArchive['createdate'] = datetime.isoformat(datetime.now())
-        newArchive['archiveplan'] = {"@type": "webarchive:ArchivePlan", "@id": newArchivePlan_id, "depth": newArchiveArgs['depth'], "cycle": newArchiveArgs['cycle']}
+        newArchive['archiveplan'] = {
+            "@type": "webarchive:ArchivePlan",
+            "@id": 'plan/' + newArchivePlan_id,
+            "depth": newArchiveArgs['depth'],
+            "cycle": newArchiveArgs['cycle']
+        }
         print(newArchive)
         data['webdomains'][newArchive_id] = newArchive
         return make_response(
@@ -167,7 +172,7 @@ class DomainArchive(Resource):
     def post(self, archive_id):
         newSnapShot = snapshot_parser.parse_args()
         newSnapShot_id = generate_id()
-        newSnapShot['@id'] = newSnapShot_id
+        newSnapShot['@id'] = 'capture/' + archive_id + '/' + newSnapShot_id
         newSnapShot['@type'] = 'webarchive:DomainArchive'
         newSnapShot['createdate'] = datetime.isoformat(datetime.now())
         data['webdomains'][archive_id][newSnapShot_id] = newSnapShot
